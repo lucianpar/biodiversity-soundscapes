@@ -1,0 +1,55 @@
+# Biodiversity Soundscapes v0 - Yosemite Birds Configuration
+
+run_id: "yosemite_v0"
+
+park:
+  park_id: "yose"
+  park_name: "Yosemite"
+
+time:
+  start_year: 2016
+  end_year: 2025
+  bars_per_year: 8
+  bpm: 60
+
+data:
+  adapter: "nps_local_csv"
+  raw_path: "data/raw/yosemite_birds.csv"
+  taxon_group: "bird"
+  # Column mapping for CSV adapter (source -> canonical)
+  column_mapping:
+    year: "year"
+    species_name: "species_name"
+    # Optional columns - adapter will handle missing gracefully
+    species_id: "species_id"
+    obs_count: "obs_count"
+    effort: "effort"
+
+mapping:
+  mode: "d_dorian"               # or "c_minor_pentatonic"
+  base_root_midi: 62             # D4
+  max_voices: 16
+  min_voices: 6
+  top_k_species_pool: 40
+  # Pad instrument palette (General MIDI program numbers)
+  pad_programs:
+    - 89   # Pad 2 (warm)
+    - 90   # Pad 3 (polysynth)
+    - 91   # Pad 4 (choir)
+    - 92   # Pad 5 (bowed)
+    - 94   # Pad 7 (halo)
+  layers:
+    drone: true
+    pads: true
+    shimmer: true
+
+render:
+  soundfont_path: "data/raw/soundfont.sf2"
+  sample_rate: 44100
+  per_year_wav: true
+  render_full: true
+
+demo:
+  enabled: true
+  host: "localhost"
+  port: 8501
