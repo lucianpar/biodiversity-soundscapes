@@ -67,13 +67,14 @@ def render_midi_to_wav(
     ensure_dir(output_path.parent)
     
     # Build FluidSynth command
+    # Note: -F and -r must come before soundfont/midi files in FluidSynth 2.x
     cmd = [
         "fluidsynth",
         "-ni",                          # Non-interactive mode
-        str(soundfont_path),
-        str(midi_path),
         "-F", str(output_path),         # Output file
         "-r", str(sample_rate),         # Sample rate
+        str(soundfont_path),
+        str(midi_path),
     ]
     
     print(f"Rendering MIDI to WAV...")
